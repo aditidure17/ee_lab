@@ -1,0 +1,179 @@
+\documentclass[a4paper,12pt]{article}
+
+% Packages
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{circuitikz}
+
+% Page setup
+\geometry{margin=1in}
+
+\begin{document}
+
+\begin{figure}
+   \centering
+   \includegraphics[width=0.8\textwidth]{./images.png}
+\end{figure}
+
+
+\begin{center}
+    Year : 2023-24 \\
+    Subject Code : EE1200 \\
+    Branch : Electrical Engineering \\
+    Name : Aditi Dure 
+\end{center}
+
+\newpage
+\title{Verification of KCL and KVL}
+\date{}
+\maketitle
+
+\section{Aim}
+To verify Kirchhoff’s Voltage Law (KVL) and Kirchhoff’s Current Law (KCL) in the given circuit
+
+\section{Circuit Diagram}
+\subsection{KCL: }
+\begin{center}
+  \begin{circuitikz}
+      \draw (0,0)
+      to[V, v=$V$] (0,2);
+      
+      \draw (0,2)
+      -- ++(1,0)
+      to[R, l=$R_1$] ++(0,-2)
+      -- (0,0);
+
+      \draw (1,2)
+      -- ++(1,0)
+      to[R, l=$R_2$] ++(0,-2)
+      -- (1,0);
+      
+      \draw (2,2)
+      -- ++(1,0)
+      to[R, l=$R_3$] ++(0,-2)
+      -- (2,0);
+
+      % Mark a node at the junction
+      \node[circle,fill,inner sep=2pt,label={above:$A$}] at (1,2) {};
+  \end{circuitikz}
+\end{center}
+
+where 
+\begin{align}
+\text{V} &= 5 \text{V} \\
+R_1 &= 100 \Omega \\
+R_2 &= 220 \Omega \\
+R_2 &= 180 \Omega
+\end{align}
+
+\subsection{KVL: }
+\begin{center}
+\begin{circuitikz}
+    \draw (0,0)
+    to[V, v=$V$] (0,2)
+    to[R, l=$R_1$] (2,2)
+    to[R, l=$R_2$] (4,2)
+    to[R, l=$R_3$] (6,2)
+    -- (6,0)
+    -- (0,0);
+\end{circuitikz}
+\end{center}
+
+where 
+\begin{align}
+\text{V} &= 5 \text{V} \\
+R_1 &= 100 \Omega \\
+R_2 &= 220 \Omega \\
+R_2 &= 180 \Omega
+\end{align}
+
+
+\section{Theory}
+KCL: \\ 
+At any node in an electrical circuit, the net current is zero. \\
+KVL: \\
+In closed path of an electrical circuit the net potential around the closed path is zero. \\
+
+\section{Theoretical calculations: } 
+\subsection{For verifying KCL: }
+Applying  KCL at node A: \\
+To find I,
+\begin{align}
+    I &= I_1 + I_2 + I_3 \\
+    R_{\text{eq}} &= \left( \frac{1}{100} + \frac{1}{180} + \frac{1}{220} \right)^{-1} \\
+    R_{\text{eq}} &= 49.74 \, \Omega \\[1em]
+    I &= \frac{V}{R_{\text{eq}}} \\
+    I &= \frac{5}{49.74} \\
+    I &= 0.1 \, \text{A}
+\end{align}
+To find \(I_1\), \(I_2\), \(I_3\) using current division rule:
+\begin{align}
+    I_1 &= \frac{100 \cdot \text{I}}{100 + 220 + 180} = 0.02 \, \text{A} \\
+    I_2 &= \frac{220 \cdot \text{I}}{100 + 220 + 180} = 0.044 \, \text{A} \\
+    I_3 &= \frac{180 \cdot \text{I}}{100 + 220 + 180} = 0.036 \, \text{A}
+\end{align}
+
+\subsection{For verifying KVL: }
+{Assume current's direction to be clockwise} \\
+Applying KVL in loop: \\
+Assume the current to be I, \\
+\begin{align}
+-V + I \cdot R_1 + I \cdot R_2 + I \cdot R_3 &= 0 \\
+-5 + I \cdot 100 + I \cdot 220 + I \cdot 180 &= 0
+\end{align}
+On solving, we get
+\begin{align}
+I &= 0.01 \, \text{A}
+\end{align}
+so,
+
+\begin{align}
+    V_1 &= I \cdot R_1 \nonumber = 0.01 \, \text{A} \cdot 100 \, \Omega \nonumber = 1 \, \text{V} \\
+    V_2 &= I \cdot R_2 \nonumber = 0.01 \, \text{A} \cdot 220 \, \Omega \nonumber = 2.2 \, \text{V} \\
+    V_1 &= I \cdot R_3 \nonumber = 0.01 \, \text{A} \cdot 180 \, \Omega \nonumber = 1.8 \, \text{V}
+\end{align}
+
+
+\section{Observation}
+\subsection{For KCL: }
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{} & \textbf{theoretical} & \textbf{practical} \\
+    \hline
+    I(A) &  $0.1\text{A}$ &  $0.09\text{A}$ \\
+    $I_1$(A) &  $0.02\text{A}$ &  $0.019\text{A}$ \\
+    $I_2$(A) &  $0.044\text{A}$ &  $0.045\text{A}$ \\
+    $I_3$(A) &  $0.036\text{A}$ &  $0.037\text{A}$ \\
+    \hline
+  \end{tabular}
+\end{table}
+\subsection{For KVL: }
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{} & \textbf{theoretical} & \textbf{practical} \\
+    \hline
+    $V_1$(V) &  $1\text{V}$ &  $1.2\text{V}$ \\
+    $V_2$(V) &  $2.2\text{V}$ &  $2.1\text{V}$ \\
+    $V_3$(V) &  $1.8\text{V}$ &  $1.7\text{V}$ \\
+    V(V) &  $0.1\text{V}$ &  $0.1\text{V}$ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\section{Result}
+For KCL, total input current is equal to total output current at node A.  \\
+For KVL, the net potential in a loop is zero
+
+
+\end{document}
+
