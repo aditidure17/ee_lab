@@ -1,0 +1,26 @@
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \textbf{Section} & \textbf{Pins in ARD} & \textbf{Other Device} & \textbf{Pins in other device} & \textbf{Pin number (if any)} \\
+    \hline
+    \multirow{3}{*}{Power} & \multirow{3}{*}{+5V} & PIR & $V_{CC}$ & - \\
+    \cline{3-5}
+    & & LCD & +L, VDD & 15, 2 \\
+    \cline{3-5}
+    & & L293D & $V_{CC1}, V_{CC2}, $EN1, EN2 & 16, 8, 1, 9 \\
+    \hline
+    \multirow{2}{*}{GND} & \multirow{2}{*}{GND} & PIR & GND & - \\
+    \cline{3-5}
+    & & L293D & GND & 4 and 12 OR 5 and 13 \\
+    \cline{3-5}
+    & & LCD & RW, $V_{SS}$, -L, $V_{EE}$ & 5, 1, 16, 3 \\
+    \hline
+    Analog & A0 & PIR & Digital output & - \\
+    \hline
+    \multirow{3}{*}{Digital} & D13, D12, D11 TO D8 & LCD & RS, Enable, D4 TO D7 & 4, 6, 11 TO 14 \\
+    \cline{2-5}
+    & D1/TXD, D0/RXD & L293D & IN1, IN2 & 2,7 \\
+    \hline
+    \end{tabular}
+\end{table}

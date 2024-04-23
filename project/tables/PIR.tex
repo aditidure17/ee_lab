@@ -1,0 +1,23 @@
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{Pins in PIR} & \textbf{Other Device} & \textbf{Pins in other device} & \textbf{Pin number (if any)} \\
+    \hline
+    \multirow{3}{*}{Power Supply ($V_{CC}$)} & ARD & +5V (power) & - \\
+    \cline{2-4}
+    & LED & +L, VDD & 15, 2 \\
+    \cline{2-4}
+    & L293D & $V_{SS}$, EN1, $V_S$, EN2 & 16, 1, 9, 8 \\
+    \hline
+    Digital Output (DO) & ARD & Analog Output (analog) & - \\
+    \hline
+    \multirow{2}{*}{Ground (GND)} & ARD & GND (power) & - \\
+    \cline{2-4}
+     & L293D & GND & 4 and 12 OR 5 and 13 \\
+    \hline
+    \end{tabular}
+\end{table}
+
+
